@@ -1,6 +1,7 @@
 import express from "express";
-import mongoose from "Mongoose";
+import mongoose from "mongoose";
 import dotenv from "dotenv";
+import authRoutes from "./routes/auth.routes.js";
 
 dotenv.config();
 
@@ -17,8 +18,9 @@ mongoose
     });
 
 app.listen(3000, () => {
-    console.log("server is ruuning on localhost:3000.");
+    console.log("server is running on localhost:3000.");
 });
+app.use("/api/auth", authRoutes);
 
 app.get("/", (req, res) => {
     res.send("Server is running on localhost:3000. MongoDB Connected");
