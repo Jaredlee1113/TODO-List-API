@@ -1,12 +1,12 @@
-import {
+const express = require("express");
+const {
     createTodo,
     updateTodo,
     deleteTodo,
     getTodos,
     getTodo,
-} from "../controllers/todo.controller.js";
-import express from "express";
-import authMiddleware from "../middleware/authMiddleware.js";
+} = require("../controllers/todo.controller.js");
+const authMiddleware = require("../middleware/authMiddleware.js");
 
 const router = express.Router();
 
@@ -18,4 +18,4 @@ router.post("/", createTodo);
 router.put("/:id", updateTodo);
 router.delete("/:id", deleteTodo);
 
-export default router;
+module.exports = router;

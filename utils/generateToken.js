@@ -1,6 +1,6 @@
-import JWT from "jsonwebtoken";
+const JWT = require("jsonwebtoken");
 
-export function generateToken(userId) {
+function generateToken(userId) {
     const secretKey = process.env.JWT_SECRET;
     if (!secretKey) {
         throw new Error("JWT secret key is not defined");
@@ -10,3 +10,5 @@ export function generateToken(userId) {
     });
     return token;
 }
+
+module.exports = { generateToken };
