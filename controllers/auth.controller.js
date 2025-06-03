@@ -1,8 +1,8 @@
-const User = require("../models/User.js");
-const bcryptjs = require("bcryptjs");
-const { generateToken } = require("../utils/generateToken.js");
+import User from "../models/User.js";
+import bcryptjs from "bcryptjs";
+import { generateToken } from "../utils/generateToken.js";
 
-async function register(req, res) {
+export async function register(req, res) {
     const { username, password, email } = req.body;
     console.log(" register ~ username, password, email:", username, password, email);
     if (!username || !password || !email) {
@@ -35,7 +35,7 @@ async function register(req, res) {
     }
 }
 
-async function login(req, res) {
+export async function login(req, res) {
     const { email, password } = req.body;
     try {
         const user = await User.findOne({ email });
@@ -50,5 +50,3 @@ async function login(req, res) {
         return res.status(500).json({ message: "Login Error" });
     }
 }
-
-module.exports = { register, login };

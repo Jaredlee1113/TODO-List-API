@@ -1,6 +1,6 @@
-const Todo = require("../models/Todo.js");
+import Todo from "../models/Todo.js";
 
-const createTodo = async (req, res) => {
+export const createTodo = async (req, res) => {
     const { title, description } = req.body;
     try {
         if (!title) return res.status(400).json({ message: "Title is required" });
@@ -15,7 +15,7 @@ const createTodo = async (req, res) => {
     }
 };
 
-const updateTodo = async (req, res) => {
+export const updateTodo = async (req, res) => {
     const todo = await Todo.findOne({ _id: req.params.id, user: req.user._id });
     if (!todo) return res.status(404).json({ message: "Todo not found" });
     const { title, description, completed } = req.body;
@@ -32,28 +32,20 @@ const updateTodo = async (req, res) => {
     }
 };
 
-const deleteTodo = async (req, res) => {
+export const deleteTodo = async (req, res) => {
     const todo = await Todo.findOneAndDelete({ _id: req.params.id, user: req.user._id });
     if (!todo) return res.status(404).json({ message: "Todo not found" });
     res.status(200).json({ message: "Todo deleted successfully" });
 };
 
-const getTodos = async (req, res) => {
+export const getTodos = async (req, res) => {
     const todos = await Todo.find({ user: req.user._id });
     if (!todos) return res.status(404).json({ message: "No todos found" });
     res.status(200).json(todos);
 };
 
-const getTodo = async (req, res) => {
+export const getTodo = async (req, res) => {
     const todo = await Todo.findOne({ _id: req.params.id, user: req.user._id });
     if (!todo) return res.status(404).json({ message: "Todo not found" });
     res.status(200).json(todo);
-};
-
-module.exports = {
-    createTodo,
-    updateTodo,
-    deleteTodo,
-    getTodos,
-    getTodo,
 };

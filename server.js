@@ -1,9 +1,8 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const authRoutes = require("./routes/auth.routes.js");
-const authMiddleware = require("./middleware/authMiddleware.js");
-const todoRoutes = require("./routes/todo.routes.js");
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import authRoutes from "./routes/auth.routes.js";
+import todoRoutes from "./routes/todo.routes.js";
 
 dotenv.config();
 
@@ -33,4 +32,4 @@ if (process.env.NODE_ENV !== "test") {
         });
 }
 
-module.exports = app;
+export default app;
