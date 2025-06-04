@@ -9,3 +9,6 @@ pnpm-workspace.yaml
 # Environment variables
 .env
 
+# Test coverage
+coverage
+

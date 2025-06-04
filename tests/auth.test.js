@@ -1,7 +1,6 @@
 import request from "supertest";
-import app from "../server.js";
+import app from "../app.js";
 import { describe, it, expect } from "vitest";
-import "./setup.js"; // Setup the test environment
 
 describe("Auth API Tests", () => {
     let token;
@@ -14,8 +13,8 @@ describe("Auth API Tests", () => {
         });
         expect(res.statusCode).toBe(200);
 
-        expect(res.body).toHaveProperty("token");
-        token = res.body.token;
+        expect(res.body.user).toHaveProperty("token");
+        token = res.body.user.token;
     });
 
     it("should login the test user and return token", async () => {

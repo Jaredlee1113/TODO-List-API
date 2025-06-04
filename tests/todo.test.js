@@ -1,7 +1,6 @@
 import request from "supertest";
-import app from "../server.js";
+import app from "../app.js";
 import { beforeAll, describe, it, expect } from "vitest";
-import "./setup.js"; // Setup the test environment
 
 let token;
 let todoId;
@@ -18,7 +17,6 @@ beforeAll(async () => {
 
 describe("Todo API Tests", () => {
     it("should create a new todo", async () => {
-        console.log("Creating a new todo with token:", token);
         const res = await request(app)
             .post("/api/todos")
             .set("Authorization", `Bearer ${token}`)
@@ -66,6 +64,7 @@ describe("Todo API Tests", () => {
         expect(res.body.title).toBe(updateTodoItem.title);
         expect(res.body.description).toBe(updateTodoItem.description);
     });
+
     it("should update a specific todo status by ID", async () => {
         const res = await request(app)
             .put(`/api/todos/${todoId}`)

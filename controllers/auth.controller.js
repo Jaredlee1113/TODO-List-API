@@ -17,7 +17,6 @@ export async function register(req, res) {
         username,
         password: hashedPassword,
         email,
-        token: generateToken(username),
     });
     try {
         await User.create(newUser);
