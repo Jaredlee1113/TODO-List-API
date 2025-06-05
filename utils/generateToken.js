@@ -6,7 +6,7 @@ export function generateToken(userId) {
         throw new Error("JWT secret key is not defined");
     }
     const token = JWT.sign({ id: userId }, secretKey, {
-        expiresIn: process.env.JWT_EXPIRATION,
+        expiresIn: process.env.JWT_EXPIRATION || "7d", // Default to 7 days if not specified
     });
     return token;
 }
